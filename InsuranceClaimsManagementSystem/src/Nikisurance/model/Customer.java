@@ -2,7 +2,7 @@
 * @author <Nguyen Chi Nghia - s3979170> 
 */
 
-package NikiTech.model;
+package Nikisurance.model;
 
 import java.util.ArrayList;
 
@@ -16,6 +16,13 @@ public abstract class Customer {
         this.id = id;
         this.name = name;
         this.insuranceCard = insuranceCard;
+        this.claims = new ArrayList<>();
+    }
+
+    public Customer(String id, String name) {
+        this.id = id;
+        this.name = name;
+        this.insuranceCard = null;
         this.claims = new ArrayList<>();
     }
 

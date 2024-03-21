@@ -2,7 +2,7 @@
 * @author <Nguyen Chi Nghia - s3979170> 
 */
 
-package NikiTech.model;
+package Nikisurance.model;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,6 +12,11 @@ public class PolicyHolder extends Customer {
 
     public PolicyHolder(String id, String fullName, InsuranceCard insuranceCard) {
         super(id, fullName, insuranceCard);
+        this.dependents = new ArrayList<>();
+    }
+
+    public PolicyHolder(String id, String fullName) {
+        super(id, fullName);
         this.dependents = new ArrayList<>();
     }
 

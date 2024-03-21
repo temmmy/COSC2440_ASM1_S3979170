@@ -2,7 +2,7 @@
 * @author <Nguyen Chi Nghia - s3979170> 
 */
 
-package NikiTech.model;
+package Nikisurance.model;
 
 public class BankingInfo {
     private String bankName;

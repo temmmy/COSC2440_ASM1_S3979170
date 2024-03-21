@@ -2,8 +2,8 @@
 * @author <Nguyen Chi Nghia - s3979170> 
 */
 
-package NikiTech.ui;
+package Nikisurance.util;
 
-public class UserInput {
+public class SortByID {
 
 }

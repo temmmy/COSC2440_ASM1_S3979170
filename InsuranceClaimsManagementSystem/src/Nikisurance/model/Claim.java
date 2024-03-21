@@ -2,7 +2,7 @@
 * @author <Nguyen Chi Nghia - s3979170> 
 */
 
-package NikiTech.model;
+package Nikisurance.model;
 
 import java.util.ArrayList;
 import java.util.Date;

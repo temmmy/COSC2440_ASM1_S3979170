@@ -2,17 +2,17 @@
 * @author <Nguyen Chi Nghia - s3979170> 
 */
 
-package NikiTech.model;
+package Nikisurance.model;
 
 import java.util.Date;
 
 public class InsuranceCard {
     private String cardNumber;
     private String cardHolderName;
-    private String policyOwner;
+    private PolicyHolder policyOwner;
     private Date expiryDate;
 
-    public InsuranceCard(String cardNumber, String cardHolderName, String policyOwner, Date expiryDate) {
+    public InsuranceCard(String cardNumber, String cardHolderName, PolicyHolder policyOwner, Date expiryDate) {
         this.cardNumber = cardNumber;
         this.cardHolderName = cardHolderName;
         this.policyOwner = policyOwner;
@@ -35,11 +35,11 @@ public class InsuranceCard {
         this.cardHolderName = cardHolderName;
     }
 
-    public String getPolicyOwner() {
+    public PolicyHolder getPolicyOwner() {
         return this.policyOwner;
     }
 
-    public void setPolicyOwner(String policyOwner) {
+    public void setPolicyOwner(PolicyHolder policyOwner) {
         this.policyOwner = policyOwner;
     }
 
