@@ -5,8 +5,9 @@
 package Nikisurance.model;
 
 import java.util.ArrayList;
+import java.io.Serializable;
 
-public abstract class Customer {
+public abstract class Customer implements Serializable {
     private String id;
     private String name;
     private InsuranceCard insuranceCard;
@@ -56,5 +57,14 @@ public abstract class Customer {
 
     public void setClaims(ArrayList<Claim> claims) {
         this.claims = claims;
+    }
+
+    @Override
+    public String toString() {
+        return "{" +
+                " id='" + getId() + "'" +
+                ", name='" + getName() + "'" +
+                ", insuranceCard='" + getInsuranceCard() + "'" +
+                "}";
     }
 }

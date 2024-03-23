@@ -4,14 +4,16 @@
 
 package Nikisurance.model;
 
-public class BankingInfo {
+import java.io.Serializable;
+
+public class BankingInfo implements Serializable {
     private String bankName;
-    private String accountHolderName;
+    private Customer customer;
     private String accountNumber;
 
-    public BankingInfo(String bankName, String accountHolderName, String accountNumber) {
+    public BankingInfo(String bankName, Customer customer, String accountNumber) {
         this.bankName = bankName;
-        this.accountHolderName = accountHolderName;
+        this.customer = customer;
         this.accountNumber = accountNumber;
     }
 
@@ -23,12 +25,12 @@ public class BankingInfo {
         this.bankName = bankName;
     }
 
-    public String getAccountHolderName() {
-        return this.accountHolderName;
+    public Customer getCustomer() {
+        return this.customer;
     }
 
-    public void setAccountHolderName(String accountHolderName) {
-        this.accountHolderName = accountHolderName;
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 
     public String getAccountNumber() {

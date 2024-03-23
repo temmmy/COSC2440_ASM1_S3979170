@@ -9,10 +9,12 @@ import java.util.List;
 
 public class PolicyHolder extends Customer {
     private ArrayList<Dependent> dependents;
+    private BankingInfo bankingInfo;
 
     public PolicyHolder(String id, String fullName, InsuranceCard insuranceCard) {
         super(id, fullName, insuranceCard);
         this.dependents = new ArrayList<>();
+        this.bankingInfo = null;
     }
 
     public PolicyHolder(String id, String fullName) {
@@ -31,4 +33,13 @@ public class PolicyHolder extends Customer {
     public void removeDependent(Dependent dependent) {
         dependents.remove(dependent);
     }
+
+    public BankingInfo getBankingInfo() {
+        return bankingInfo;
+    }
+
+    public void setBankingInfo(BankingInfo bankingInfo) {
+        this.bankingInfo = bankingInfo;
+    }
+
 }

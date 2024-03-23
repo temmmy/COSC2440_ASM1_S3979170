@@ -4,6 +4,8 @@
 
 package Nikisurance.ui;
 
+import Nikisurance.util.DataGenerator;
+
 public class Main {
     public static void main(String[] args) {
         System.out.println("\n" + //
@@ -15,5 +17,10 @@ public class Main {
                 "╚═╝  ╚═══╝╚═╝╚═╝  ╚═╝╚═╝╚══════╝ ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═══╝ ╚═════╝╚══════╝\n" + //
                 "                                                                                   \n" + //
                 "");
+
+        System.out.println("Welcome to NikiSurance Insurance Claims Management System");
+        System.out.println("--------------------------------------------------------");
+        DataGenerator dataGenerator = new DataGenerator();
+        dataGenerator.generateAndSaveData();
     }
 }

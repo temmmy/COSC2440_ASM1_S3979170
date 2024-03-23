@@ -5,8 +5,9 @@
 package Nikisurance.model;
 
 import java.util.Date;
+import java.io.Serializable;
 
-public class InsuranceCard {
+public class InsuranceCard implements Serializable {
     private String cardNumber;
     private String cardHolderName;
     private PolicyHolder policyOwner;
@@ -49,5 +50,14 @@ public class InsuranceCard {
 
     public void setExpiryDate(Date expiryDate) {
         this.expiryDate = expiryDate;
+    }
+
+    @Override
+    public String toString() {
+        return "{" +
+                " cardNumber='" + getCardNumber() + "'" +
+                ", cardHolderName='" + getCardHolderName() + "'" +
+                ", expiryDate='" + getExpiryDate() + "'" +
+                "}";
     }
 }

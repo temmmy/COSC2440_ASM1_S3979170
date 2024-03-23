@@ -6,8 +6,9 @@ package Nikisurance.model;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.io.Serializable;
 
-public class Claim {
+public class Claim implements Serializable {
     private String id;
     private Date claimDate;
     private Customer insuredPerson;
@@ -105,5 +106,20 @@ public class Claim {
 
     public void setReceiverBankingInfo(BankingInfo receiverBankingInfo) {
         this.receiverBankingInfo = receiverBankingInfo;
+    }
+
+    @Override
+    public String toString() {
+        return "{" +
+                " id='" + getId() + "'" +
+                ", claimDate='" + getClaimDate() + "'" +
+                ", insuredPerson='" + getInsuredPerson() + "'" +
+                ", cardNumber='" + getCardNumber() + "'" +
+                ", examDate='" + getExamDate() + "'" +
+                ", documents='" + getDocuments() + "'" +
+                ", claimAmount='" + getClaimAmount() + "'" +
+                ", status='" + getStatus() + "'" +
+                ", receiverBankingInfo='" + getReceiverBankingInfo() + "'" +
+                "}";
     }
 }

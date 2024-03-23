@@ -6,9 +6,9 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Date;
-import java.util.List;
 import java.util.Calendar;
 
+import Nikisurance.model.BankingInfo;
 import Nikisurance.model.Claim;
 import Nikisurance.model.Customer;
 import Nikisurance.model.Dependent;
@@ -39,10 +39,14 @@ public class DataGenerator {
         }
 
         for (PolicyHolder ph : policyHolders) {
-            if (random.nextBoolean()) { // Not all Policyholders will get a card
-                InsuranceCard card = generateInsuranceCard(ph); // Pass in policyholder
-                insuranceCards.add(card);
+            InsuranceCard card = generateInsuranceCard(ph); // Pass in policyholder
+            for (Dependent dependent : ph.getDependents()) {
+                dependent.setInsuranceCard(card);
             }
+            BankingInfo bankingInfo = generateBankingInfo(ph);
+            ph.setBankingInfo(bankingInfo);
+            insuranceCards.add(card);
+
         }
 
         for (int i = 0; i < 50; i++) {
@@ -55,6 +59,21 @@ public class DataGenerator {
         saveToFile(insuranceCards, INSURANCE_CARDS_FILE);
         saveToFile(claims, CLAIMS_FILE);
 
+        System.out.println("Claims:");
+        for (Claim claim : claims) {
+            System.out.println(claim);
+        }
+
+        System.out.println("Customers:");
+        for (Customer customer : customers) {
+            System.out.println(customer);
+        }
+
+        System.out.println("Insurance Cards:");
+        for (InsuranceCard card : insuranceCards) {
+            System.out.println(card);
+        }
+
     }
 
     private void saveToFile(Object data, String filename) {
@@ -62,6 +81,7 @@ public class DataGenerator {
             out.writeObject(data);
         } catch (IOException e) {
             System.err.println("Error saving to file " + filename + ": " + e.getMessage());
+            e.printStackTrace();
         }
     }
 
@@ -73,12 +93,8 @@ public class DataGenerator {
     }
 
     private InsuranceCard generateInsuranceCard(PolicyHolder policyHolder) {
-        String id = String.format("%10d", random.nextInt(1000000000));
-        Date issueDate = generateDate();
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(issueDate);
-        calendar.add(Calendar.YEAR, 1); // Add 1 year to the issue date
-        Date expiryDate = calendar.getTime();
+        String id = String.format("%010d", random.nextInt(1000000000));
+        Date expiryDate = generateDate();
         InsuranceCard card = new InsuranceCard(id, policyHolder.getName(), policyHolder,
                 expiryDate);
         policyHolder.setInsuranceCard(card);
@@ -86,11 +102,16 @@ public class DataGenerator {
     }
 
     private Claim generateClaim(Customer customer) {
-        String id = String.format("c-%10d", random.nextInt(1000000000));
-        Date date = generateDate();
+        String id = String.format("f-%010d", random.nextInt(1000000000));
+        Date claimDate = generateDate();
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(claimDate);
+        calendar.add(Calendar.YEAR, 1); // Add 1 year to the issue date
+        Date examDate = calendar.getTime();
+        ArrayList<String> documents = new ArrayList<>();
         double amount = random.nextDouble() * 10000;
-        String description = "Claim for " + customer.getName();
-        return new Claim(id, date, amount, description, customer);
+        return new Claim(id, claimDate, customer, customer.getInsuranceCard().getCardNumber(), examDate, documents,
+                amount, Claim.Status.NEW, null);
     }
 
     private Dependent generateDependent() {
@@ -99,11 +120,23 @@ public class DataGenerator {
         return new Dependent(id, name);
     }
 
+    private BankingInfo generateBankingInfo(Customer customer) {
+        String bankName = generateBankName();
+        String accountNumber = String.format("%010d", random.nextInt(1000000000));
+        return new BankingInfo(bankName, customer, accountNumber);
+    }
+
     private String generateName() {
         String[] firstNames = { "John", "Jane", "Emily", "Michael", "David", "Minh", "Nghia", "Dat", "Duy", "Mai" };
         String[] lastNames = { "Smith", "Johnson", "Williams", "Brown", "Lee", "Nguyen", "Tran", "Le", "Pham",
                 "Huynh" };
         return firstNames[random.nextInt(firstNames.length)] + " " + lastNames[random.nextInt(lastNames.length)];
+    }
+
+    private String generateBankName() {
+        String[] bankNames = { "Vietcombank", "Techcombank", "BIDV", "VietinBank", "Agribank", "MBBank", "Sacombank",
+                "ACB", "VPBank", "TPBank" };
+        return bankNames[random.nextInt(bankNames.length)];
     }
 
     private Date generateDate() {
