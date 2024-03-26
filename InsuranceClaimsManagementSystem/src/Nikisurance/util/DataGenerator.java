@@ -59,25 +59,26 @@ public class DataGenerator {
         saveToFile(insuranceCards, INSURANCE_CARDS_FILE);
         saveToFile(claims, CLAIMS_FILE);
 
-        System.out.println("Claims:");
-        for (Claim claim : claims) {
-            System.out.println(claim);
-        }
+        // System.out.println("Claims:");
+        // for (Claim claim : claims) {
+        // System.out.println(claim);
+        // }
 
-        System.out.println("Customers:");
-        for (Customer customer : customers) {
-            System.out.println(customer);
-        }
+        // System.out.println("Customers:");
+        // for (Customer customer : customers) {
+        // System.out.println(customer);
+        // }
 
-        System.out.println("Insurance Cards:");
-        for (InsuranceCard card : insuranceCards) {
-            System.out.println(card);
-        }
+        // System.out.println("Insurance Cards:");
+        // for (InsuranceCard card : insuranceCards) {
+        // System.out.println(card);
+        // }
 
     }
 
     private void saveToFile(Object data, String filename) {
-        try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(filename))) {
+        try (ObjectOutputStream out = new ObjectOutputStream(
+                new FileOutputStream("InsuranceClaimsManagementSystem/data/" + filename))) {
             out.writeObject(data);
         } catch (IOException e) {
             System.err.println("Error saving to file " + filename + ": " + e.getMessage());

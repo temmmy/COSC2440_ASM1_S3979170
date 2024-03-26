@@ -14,9 +14,9 @@ import Nikisurance.model.InsuranceCard;
 import Nikisurance.model.Claim;
 
 public class DataManager {
-    private static final String CUSTOMERS_FILE = "customers.dat";
-    private static final String INSURANCE_CARDS_FILE = "insurancecards.dat";
-    private static final String CLAIMS_FILE = "claims.dat";
+    private static final String CUSTOMERS_FILE = "InsuranceClaimsManagementSystem/data/customers.dat";
+    private static final String INSURANCE_CARDS_FILE = "InsuranceClaimsManagementSystem/data/insurancecards.dat";
+    private static final String CLAIMS_FILE = "InsuranceClaimsManagementSystem/data/claims.dat";
 
     @SuppressWarnings("unchecked")
     public ArrayList<Customer> loadCustomers() {
