@@ -1,12 +1,14 @@
-/** 
-* @author <Nguyen Chi Nghia - s3979170> 
+/**
+* @author <Nguyen Chi Nghia - s3979170>
 */
 
 package Nikisurance.io;
 
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 import Nikisurance.model.Customer;
@@ -45,6 +47,30 @@ public class DataManager {
         } catch (IOException | ClassNotFoundException e) {
             System.err.println("Error loading claims: " + e.getMessage());
             return new ArrayList<>(); // Return an empty list on error
+        }
+    }
+
+    public void saveClaims(ArrayList<Claim> claims) {
+        try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(CLAIMS_FILE))) {
+            out.writeObject(claims);
+        } catch (IOException e) {
+            System.err.println("Error saving claims: " + e.getMessage());
+        }
+    }
+
+    public void saveCustomers(ArrayList<Customer> customers) {
+        try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(CUSTOMERS_FILE))) {
+            out.writeObject(customers);
+        } catch (IOException e) {
+            System.err.println("Error saving customers: " + e.getMessage());
+        }
+    }
+
+    public void saveInsuranceCards(ArrayList<InsuranceCard> insuranceCards) {
+        try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(INSURANCE_CARDS_FILE))) {
+            out.writeObject(insuranceCards);
+        } catch (IOException e) {
+            System.err.println("Error saving insurance cards: " + e.getMessage());
         }
     }
 }

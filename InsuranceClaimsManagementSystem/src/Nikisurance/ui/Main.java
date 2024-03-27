@@ -26,13 +26,13 @@ public class Main {
         System.out.println("|           WELCOME TO NIKISURANCE INSURANCE CLAIMS MANAGEMENT SYSTEM!            |");
         System.out.println("-----------------------------------------------------------------------------------");
         DataGenerator dataGenerator = new DataGenerator();
-        DataManager dataManager = new DataManager();
-        Admin admin = new Admin("admin", "admin");
-        ArrayList<Customer> customers = dataManager.loadCustomers();
-        ArrayList<InsuranceCard> insuranceCards = dataManager.loadInsuranceCards();
-        ArrayList<Claim> claims = dataManager.loadClaims();
+        // ArrayList<Customer> customers = dataManager.loadCustomers();
+        // ArrayList<InsuranceCard> insuranceCards = dataManager.loadInsuranceCards();
+        // ArrayList<Claim> claims = dataManager.loadClaims();
         Scanner scanner = new Scanner(System.in);
         Authentication auth = new Authentication();
+
+        // Confirmation Message
         // System.out.println("Successfully loaded " + customers.size() + " customers");
         // System.out.println("Successfully loaded " + insuranceCards.size() + "
         // insurance cards");
@@ -48,11 +48,13 @@ public class Main {
 
             if (auth.authenticate(username, password)) {
                 authenticated = true;
+                DataManager dataManager = new DataManager(); // Assuming DataManager loads/saves data
+                AdminUI adminUI = new AdminUI(); // Assuming you have a class for your text-based UI
+                Admin admin = new Admin(username, password, dataManager, adminUI);
                 System.out.println("Login Successful!");
             } else {
                 System.out.println("Invalid credentials.");
             }
         } while (!authenticated);
-
     }
 }

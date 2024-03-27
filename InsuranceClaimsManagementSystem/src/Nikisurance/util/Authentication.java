@@ -19,7 +19,6 @@ public class Authentication {
         try (BufferedReader reader = new BufferedReader(new FileReader(CREDENTIALS_FILE))) {
             String line;
             while ((line = reader.readLine()) != null) {
-                System.out.println(line);
                 String[] parts = line.split(" "); // Adjust delimiter if necessary
                 if (parts.length == 2) {
                     credentials.put(parts[0], parts[1]);
@@ -28,7 +27,6 @@ public class Authentication {
         } catch (IOException e) {
             System.err.println("Error loading credentials: " + e.getMessage());
         }
-        System.err.println("Credentials: " + credentials);
     }
 
     public boolean authenticate(String username, String password) {
